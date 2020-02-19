@@ -56,7 +56,7 @@
                                     <a href="{{ route('items.edit', $item->id) }}">{{ $item->name }}</a>
                                 </td>
                                 <td class="col-lg-1 col-xl-2 d-none d-lg-block">
-                                    {{ $item->category ? $item->category->name : trans('general.na') }}
+                                    {{ $item->category->name }}
                                 </td>
                                 <td class="col-md-3 col-lg-3 col-xl-2 text-right d-none d-md-block">
                                     {{ money($item->sale_price, setting('default.currency'), true) }}
@@ -69,9 +69,9 @@
                                         {{ Form::enabledGroup($item->id, $item->name, $item->enabled) }}
                                     @else
                                         @if ($item->enabled)
-                                            <badge rounded type="success">{{ trans('general.enabled') }}</badge>
+                                            <badge rounded type="success" class="mw-60">{{ trans('general.yes') }}</badge>
                                         @else
-                                            <badge rounded type="danger">{{ trans('general.disabled') }}</badge>
+                                            <badge rounded type="danger" class="mw-60">{{ trans('general.no') }}</badge>
                                         @endif
                                     @endif
                                 </td>

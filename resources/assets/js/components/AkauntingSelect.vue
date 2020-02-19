@@ -365,6 +365,8 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 import { Select, Option, OptionGroup, ColorPicker } from 'element-ui';
 
 import AkauntingModalAddNew from './AkauntingModalAddNew';
@@ -419,13 +421,17 @@ export default {
             description: "Selectbox attribute name"
         },
         value: {
-            type: String,
-            default: null,
+            type: [String, Number, Array],
+            default: '',
             description: "Selectbox selected value"
         },
         options: null,
 
-        model: null,
+        model: {
+            type: [String, Number],
+            default: '',
+            description: "Selectbox selected model"
+        },
 
         icon: {
             type: String,
@@ -604,8 +610,21 @@ export default {
             // update options
             this.selectOptions = options;
         },
+
         value: function (value) {
-            this.real_model = value;
+            if (this.multiple) {
+                this.real_model = value;
+            } else {
+                this.real_model = value.toString();
+            }
+        },
+
+        model: function (value) {
+            if (this.multiple) {
+                this.real_model = value;
+            } else {
+                this.real_model = value.toString();
+            }
         }
     },
 }

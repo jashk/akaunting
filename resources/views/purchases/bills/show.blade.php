@@ -426,13 +426,13 @@
             @stack('box_footer_start')
                 <div class="card-footer">
                     <div class="row align-items-center">
-                        <div class="col-xs-12 col-sm-6">
+                        <div class="col-xs-12 col-sm-4">
                             @if($bill->attachment)
                                 @php $file = $bill->attachment; @endphp
                                 @include('partials.media.file')
                             @endif
                         </div>
-                        <div class="col-xs-12 col-sm-6 text-right">
+                        <div class="col-xs-12 col-sm-8 text-right">
                             @stack('button_edit_start')
                                 @if(!$bill->reconciled)
                                     <a href="{{ route('bills.edit', $bill->id) }}" class="btn btn-info header-button-top">
@@ -565,7 +565,7 @@
                                                                     'type'    => 'button',
                                                                     'class'   => 'btn btn-danger btn-sm',
                                                                     'title'   => trans('general.delete'),
-                                                                    'onclick' => 'confirmDelete("' . '#bill-transaction-' . $transaction->id . '", "' . trans_choice('general.transaction', 2) . '", "' . trans('general.delete_confirm', ['name' => '<strong>' . Date::parse($transaction->paid_at)->format($date_format) . ' - ' . money($transaction->amount, $transaction->currency_code, true) . ' - ' . $transaction->account->name . '</strong>', 'type' => strtolower(trans_choice('general.transactions', 1))]) . '", "' . trans('general.cancel') . '", "' . trans('general.delete') . '")'
+                                                                    '@click'  => 'confirmDelete("' . route('transactions.destroy', $transaction->id) . '", "' . trans_choice('general.transactions', 2) . '", "' . $message. '",  "' . trans('general.cancel') . '", "' . trans('general.delete') . '")'
                                                                 )) !!}
                                                                 {!! Form::close() !!}
                                                             @endif
@@ -623,4 +623,3 @@
 @push('scripts_start')
     <script src="{{ asset('public/js/purchases/bills.js?v=' . version('short')) }}"></script>
 @endpush
-

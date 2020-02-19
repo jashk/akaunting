@@ -368,6 +368,8 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 import { Select, Option, OptionGroup, ColorPicker } from 'element-ui';
 
 import AkauntingModalAddNew from './AkauntingModalAddNew';
@@ -422,7 +424,7 @@ export default {
             description: "Selectbox attribute name"
         },
         value: {
-            type: String,
+            type: [String, Number, Array],
             default: null,
             description: "Selectbox selected value"
         },
@@ -542,6 +544,7 @@ export default {
 
                 this.selectOptions = this.list;
                 */
+
                if (!this.remoteAction) {
                    this.remoteAction = url + '/common/items/autocomplete';
                }
@@ -706,8 +709,22 @@ export default {
             // update options
             //this.selectOptions = options;
         },
+
         value: function (value) {
-            this.real_model = value;
+            if (this.multiple) {
+                this.real_model = value;
+            } else {
+                //this.real_model = value.toString();
+                this.real_model = value;
+            }
+        },
+
+        model: function (value) {
+            if (this.multiple) {
+                this.real_model = value;
+            } else {
+                this.real_model = value;
+            }
         }
     },
 }

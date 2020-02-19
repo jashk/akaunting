@@ -20,7 +20,7 @@
                 <div class="row">
                     {{ Form::selectAddNewGroup('contact_id', trans_choice('general.vendors', 1), 'user', $vendors, $bill->contact_id, ['required' => 'required', 'path' => route('modals.vendors.create'), 'change' => 'onChangeContact']) }}
 
-                    {{ Form::selectGroup('currency_code', trans_choice('general.currencies', 1), 'exchange', $currencies, $bill->currency_code, ['required' => 'required', 'change' => 'onChangeCurrency']) }}
+                    {{ Form::selectAddNewGroup('currency_code', trans_choice('general.currencies', 1), 'exchange-alt', $currencies, $bill->currency_code, ['required' => 'required', 'path' => route('modals.currencies.create'), 'change' => 'onChangeCurrency']) }}
 
                     {{ Form::dateGroup('billed_at', trans('bills.bill_date'), 'calendar', ['id' => 'billed_at', 'class' => 'form-control datepicker', 'required' => 'required', 'date-format' => 'Y-m-d', 'autocomplete' => 'off'], Date::parse($bill->billed_at)->toDateString()) }}
 
@@ -37,7 +37,7 @@
                                 <thead class="thead-light">
                                     <tr class="d-flex flex-nowrap">
                                         @stack('actions_th_start')
-                                            <th class="col-md-1 border-right-0 border-bottom-0">{{ trans('general.actions') }}</th>
+                                            <th class="col-md-1 border-right-0 border-bottom-0 item-action">{{ trans('general.actions') }}</th>
                                         @stack('actions_th_end')
 
                                         @stack('name_th_start')
@@ -66,7 +66,7 @@
 
                                     @stack('add_item_td_start')
                                         <tr class="row" id="addItem">
-                                            <td class="col-md-1 border-right-0 border-bottom-0">
+                                            <td class="col-md-1 border-right-0 border-bottom-0 item-action">
                                                 <button type="button" @click="onAddItem" id="button-add-item" data-toggle="tooltip" title="{{ trans('general.add') }}" class="btn btn-icon btn-outline-success btn-lg" data-original-title="{{ trans('general.add') }}"><i class="fa fa-plus"></i>
                                                 </button>
                                             </td>
@@ -98,7 +98,7 @@
                                                     <div class="card d-none" :class="[{'show' : discount}]">
                                                         <div class="discount card-body">
                                                             <div class="row align-items-center">
-                                                                <div class="col-md-6">
+                                                                <div class="col-sm-6">
                                                                     <div class="input-group input-group-merge">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="input-discount">
@@ -108,7 +108,7 @@
                                                                         {!! Form::number('pre_discount', null, ['id' => 'pre-discount', 'class' => 'form-control']) !!}
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-sm-6">
                                                                     <div class="discount-description">
                                                                         <strong>{{ trans('invoices.discount_desc') }}</strong>
                                                                     </div>
@@ -116,13 +116,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="discount card-footer">
-                                                            <div class="row text-center">
-                                                                <div class="col-md-12">
-                                                                    <a href="javascript:void(0)" @click="discount = false" class="btn btn-icon btn-outline-secondary">
-                                                                        <span class="btn-inner--icon"><i class="fas fa-times"></i></span>
-                                                                        <span class="btn-inner--text">{{ trans('general.cancel') }}</span>
+                                                            <div class="row float-right">
+                                                                <div class="col-xs-12 col-sm-12">
+                                                                    <a href="javascript:void(0)" @click="discount = false" class="btn btn-outline-secondary header-button-top" @click="closePayment">
+                                                                        {{ trans('general.cancel') }}
                                                                     </a>
-                                                                    {!! Form::button('<span class="fa fa-save"></span> &nbsp;' . trans('general.save'), ['type' => 'button', 'id' => 'save-discount', '@click' => 'onAddDiscount', 'class' => 'btn btn-success']) !!}
+                                                                    {!! Form::button(trans('general.save'), ['type' => 'button', 'id' => 'save-discount', '@click' => 'onAddDiscount', 'class' => 'btn btn-success header-button-top']) !!}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -191,7 +190,7 @@
 
             @permission('update-purchases-bills')
                 <div class="card-footer">
-                    <div class="row float-right">
+                    <div class="row save-buttons">
                         {{ Form::saveButtons('bills.index') }}
                     </div>
                 </div>

@@ -109,7 +109,7 @@ button:focus
 {
     outline: none !important;
 }
-/*--Button Element Focus Finisj--*/
+/*--Button Element Focus Finish--*/
 
 
 /*--Button Hover--*/
@@ -147,12 +147,6 @@ button:focus
     overflow: hidden;
 }
 
-/*--------Left Menu--------*/
-.g-sidenav-hidden .navbar-vertical.navbar-expand-xs
-{
-    overflow: hidden !important;
-}
-/*--------Left Menu Finish--------*/
 
 
 /*--------Customer/Vendor Show--------*/
@@ -207,7 +201,7 @@ button:focus
 /*--------Index Page Tables Finish--------*/
 
 
-/*--------Left Menu Dropdown--------*/
+/*--------Left Menu--------*/
 .menu-dropdown
 {
     position: absolute !important;
@@ -218,7 +212,13 @@ button:focus
 {
     min-width: 13rem !important;
 }
-/*--------Left Menu Dropdown Finish--------*/
+
+
+.g-sidenav-hidden .navbar-vertical.navbar-expand-xs
+{
+    overflow: hidden !important;
+}
+/*--------Left Menu Finish--------*/
 
 
 /*--------Max Width 100 Pixel--------*/
@@ -236,6 +236,10 @@ button:focus
 }
 /*--------Form Group Finish--------*/
 
+.item-action
+{
+    padding-left: 21px !important;
+}
 
 /*--Long Texts--*/
 .long-texts
@@ -270,14 +274,6 @@ button:focus
     margin-left: 0;
 }
 /*--------Table Body Row Margin Finish--------*/
-
-
-/*--------Card Footer--------*/
-.card-footer
-{
-    margin: 0;
-}
-/*--------Card Footer Finish--------*/
 
 
 /*--------Item Column Image--------*/
@@ -605,7 +601,6 @@ button:focus
 }
 /*--------Invoice and Bill Total Column Finish--------*/
 
-
 /*--------Custom Table--------*/
 .table thead th
 {
@@ -748,6 +743,43 @@ table .align-items-center td span.badge {
 /*--------Modal Dialog Resizing Finish--------*/
 
 
+/*--Save Buttons Responsive--*/
+.save-buttons
+{
+    float: right !important;
+}
+/*--Save Buttons Responsive Finish--*/
+
+
+/*--Left Menu Stabilize--*/
+.g-sidenav-show .sidenav {
+    max-width: 250px !important;
+  }
+
+  .g-sidenav-show .sidenav .navbar-brand,
+  .g-sidenav-show .sidenav .navbar-heading {
+    display: block;
+  }
+
+  .g-sidenav-show .sidenav.fixed-left + .main-content {
+    margin-left: 250px;
+  }
+
+  .g-sidenav-show .sidenav.fixed-right + .main-content {
+    margin-right: 250px;
+  }
+
+  .g-sidenav-show .sidenav {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+
+  .sidenav-show .navbar-top .navbar-brand {
+    display: none;
+  }
+  /*--Left Menu Stabilize Finish--*/
+
+
 /*--------Responsive--------*/
 /*--Xs Breakpoint--*/
 @media (max-width: 575.98px)
@@ -825,12 +857,44 @@ table .align-items-center td span.badge {
 
     .left-menu-toggle-position
     {
-        margin-left: 1rem !important;
+        margin-left: 2rem !important;
     }
 
     .dashboard-action
     {
         float: right;
+    }
+
+    .pagination-xs
+    {
+        padding-right: 0;
+        padding-top: 1.5rem;
+    }
+
+    .el-range-editor.el-input__inner
+    {
+        width: 100% !important;
+        margin-top: 1rem;
+    }
+
+    .save-buttons
+    {
+        float: none !important;
+    }
+
+    .g-sidenav-show .sidenav
+    {
+        display: none !important;
+    }
+
+    .g-sidenav-show.g-sidenav-hidden .sidenav
+    {
+        display: none !important;
+    }
+
+    .g-sidenav-show.g-sidenav-pinned .sidenav
+    {
+        display: block !important;
     }
 }
 /*--Xs Breakpoint Finish--*/
@@ -875,3 +939,9 @@ table .align-items-center td span.badge {
 }
 /*--Lg Breakpoint Finish--*/
 /*--------Responsive Finish--------*/
+
+/*--------Index Pages Badge Min Width--------*/
+.mw-60 {
+    min-width: 60px;
+}
+/*--------Index Pages Badge Min Finish--------*/

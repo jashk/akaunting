@@ -128,7 +128,6 @@ return [
     'disable'               => 'Disable',
     'select_all'            => 'Select All',
     'unselect_all'          => 'Unselect All',
-    'go_to'                 => 'Go to :name',
     'created_date'          => 'Created Date',
     'period'                => 'Period',
     'frequency'             => 'Frequency',
@@ -152,6 +151,7 @@ return [
     'no_data'               => 'No data',
     'no_matching_data'      => 'No matching data',
     'clear_cache'           => 'Clear Cache',
+    'go_to_dashboard'       => 'Go to dashboard',
 
     'card' => [
         'name'                  => 'Name on Card',
@@ -198,8 +198,8 @@ return [
         'bills' => 'Bills can be one time or recurring. They indicate what you owe your vendors for the products or services you purchase.',
         'payments' => 'Payment is a paid expense transaction. It can be an independent record (i.e. food receipt) or attached to a bill.',
         'vendors' => 'Vendors are required if you want to create bills. You can see the balance you owe and filter reports by the vendor.',
-        'transfers' => 'Sometimes you may want to transfer money from one account to another.',
-        'taxes' => 'The following fields are displayed as blank to be filled, some are required and some not. Those marked with red star are required.',
+        'transfers' => 'Transfers allow you to move money from one account to another, whether they use the same currency or not.',
+        'taxes' => 'Taxes are used to apply extra fees to invoices and bills. Your financials are affected by these regulatory taxes.',
         'reconciliations' => 'Bank reconciliation is a process performed to ensure that your company bank records are also correct.',
     ],
 

@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import axios from 'axios';
 
 import AkauntingSearch from './../components/AkauntingSearch';
@@ -14,7 +16,7 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import NProgressAxios from './../plugins/nprogress-axios';
 
-import { Select, Option, Steps, Step, Button, Link } from 'element-ui';
+import { Select, Option, Steps, Step, Button, Link, Tooltip } from 'element-ui';
 
 import Form from './../plugins/form';
 
@@ -35,6 +37,7 @@ export default {
         [Step.name]: Step,
         [Button.name]: Button,
         [Link.name]: Link,
+        [Tooltip.name]: Tooltip,
     },
 
     data: function () {

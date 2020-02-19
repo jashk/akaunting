@@ -81,7 +81,7 @@ const app = new Vue({
             this.form.items = items;
         }
 
-        if (document.getElementById('taxes').getAttribute('data-value')) {
+        if ((document.getElementById('taxes') != null) && (document.getElementById('taxes').getAttribute('data-value'))) {
             this.taxes = JSON.parse(document.getElementById('taxes').getAttribute('data-value'));
         }
     },
@@ -110,8 +110,8 @@ const app = new Vue({
             })
             .then(response => {
                 this.currency = response.data;
-                this.form.currency_code = response.data.currency_code;
-                this.form.currency_rate = response.data.currency_rate;
+                this.form.currency_code = response.data.code;
+                this.form.currency_rate = response.data.rate;
             })
             .catch(error => {
             });
@@ -297,6 +297,8 @@ const app = new Vue({
 
             this.form.discount = discount;
             this.discount = false;
+
+            this.onCalculateTotal();
         },
 
         onPayment() {
@@ -342,26 +344,9 @@ const app = new Vue({
                 this.transaction_form.currency = response.data.currency_name;
                 this.transaction_form.currency_code = response.data.currency_code;
                 this.transaction_form.currency_rate = response.data.currency_rate;
-
-                this.money.decimal = response.data.decimal_mark;
-                this.money.thousands = response.data.thousands_separator;
-                this.money.prefix = (response.data.symbol_first) ? response.data.symbol : '';
-                this.money.suffix = !(response.data.symbol_first) ? response.data.symbol : '';
-                this.money.precision = response.data.precision;
             })
             .catch(error => {
             });
         },
-
-        onDeleteTransaction(form_id) {
-            this.transaction = new Form(form_id);
-
-            this.confirm.url = this.transaction.action;
-            this.confirm.title = this.transaction.title;
-            this.confirm.message = this.transaction.message;
-            this.confirm.button_cancel = this.transaction.cancel;
-            this.confirm.button_delete = this.transaction.delete;
-            this.confirm.show = true;
-        }
     }
 });

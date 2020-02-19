@@ -9,14 +9,22 @@
         :form-classes="[{'has-error': form.errors.get('{{ $name }}') }]"
         @endif
 
-        :icon="'{{ $icon }}'"
-        :title="'{{ $text }}'"
-        :placeholder="'{{ trans('general.form.select.field', ['field' => $text]) }}'"
-        :name="'{{ $name }}'"
+        icon="{{ $icon }}"
+        title="{{ $text }}"
+        placeholder="{{ trans('general.form.select.field', ['field' => $text]) }}"
+        name="{{ $name }}"
         :options="{{ json_encode($values) }}"
-        :value="{{ json_encode(old($name, $selected)) }}"
 
-        :multiple="true"
+        @if(old($name, $selected))
+        value="{{ json_encode(old($name, $selected)) }}"
+        @endif
+
+        @if (!empty($attributes['model']))
+        :model="{{ $attributes['model'] }}"
+        @endif
+
+        multiple="true"
+
         :add-new="{{ json_encode([
             'status' => true,
             'text' => trans('general.add_new'),
@@ -26,12 +34,10 @@
             'buttons' => [
                 'cancel' => [
                     'text' => trans('general.cancel'),
-                    'icon' => 'fas fa-times',
                     'class' => 'btn-outline-secondary'
                 ],
                 'confirm' => [
                     'text' => trans('general.save'),
-                    'icon' => 'fas fa-save',
                     'class' => 'btn-success'
                 ]
             ]
@@ -67,8 +73,8 @@
         :form-error="form.errors.get('{{ $name }}')"
         @endif
 
-        :no-data-text="'{{ trans('general.no_data') }}'"
-        :no-matching-data-text="'{{ trans('general.no_matching_data') }}'"
+        no-data-text="{{ trans('general.no_data') }}"
+        no-matching-data-text="{{ trans('general.no_matching_data') }}"
     ></akaunting-select>
 
 @stack($name . '_input_end')

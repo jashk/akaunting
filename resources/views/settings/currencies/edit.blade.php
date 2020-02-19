@@ -22,13 +22,13 @@
 
                     {{ Form::selectGroup('code', trans('currencies.code'), 'code', $codes, $currency->code, ['required' => 'required', 'change' => 'onChangeCode']) }}
 
-                    {{ Form::textGroup('rate', trans('currencies.rate'), 'sliders-h', ['@input' => 'RateReplace', 'required' => 'required']) }}
+                    {{ Form::textGroup('rate', trans('currencies.rate'), 'sliders-h', ['@input' => 'onChangeRate', 'required' => 'required']) }}
 
                     {{ Form::textGroup('precision', trans('currencies.precision'), 'dot-circle') }}
 
                     {{ Form::textGroup('symbol', trans('currencies.symbol.symbol'), 'font') }}
 
-                    {{ Form::selectGroup('symbol_first', trans('currencies.symbol.position'), 'text-width', ['1' => trans('currencies.symbol.before'), '0' => trans('currencies.symbol.after')], $currency->symbol_first) }}
+                    {{ Form::selectGroup('symbol_first', trans('currencies.symbol.position'), 'text-width', ['1' => trans('currencies.symbol.before'), '0' => trans('currencies.symbol.after')], $currency->symbol_first, ['model' => 'form.symbol_first']) }}
 
                     {{ Form::textGroup('decimal_mark', trans('currencies.decimal_mark'), 'sign') }}
 
@@ -42,7 +42,7 @@
 
             @permission('update-settings-currencies')
                 <div class="card-footer">
-                    <div class="row float-right">
+                    <div class="row save-buttons">
                         {{ Form::saveButtons('currencies.index') }}
                     </div>
                 </div>
