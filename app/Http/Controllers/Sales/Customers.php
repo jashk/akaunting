@@ -14,14 +14,11 @@ use App\Models\Banking\Transaction;
 use App\Models\Common\Contact;
 use App\Models\Sale\Invoice;
 use App\Models\Setting\Currency;
-use App\Traits\Contacts;
 use Date;
 use Illuminate\Http\Request as BaseRequest;
 
 class Customers extends Controller
 {
-    use Contacts;
-
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +26,7 @@ class Customers extends Controller
      */
     public function index()
     {
-        $customers = Contact::type($this->getCustomerTypes())->collect();
+        $customers = Contact::customer()->collect();
 
         return view('sales.customers.index', compact('customers'));
     }
@@ -79,7 +76,7 @@ class Customers extends Controller
         }
 
         // Handle transactions
-        $transactions = Transaction::where('contact_id', $customer->id)->type('income')->get();
+        $transactions = Transaction::where('contact_id', $customer->id)->income()->get();
 
         $counts['transactions'] = $transactions->count();
 

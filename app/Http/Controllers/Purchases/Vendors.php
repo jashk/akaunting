@@ -28,7 +28,7 @@ class Vendors extends Controller
      */
     public function index()
     {
-        $vendors = Contact::type($this->getVendorTypes())->collect();
+        $vendors = Contact::vendor()->collect();
 
         return view('purchases.vendors.index', compact('vendors'));
     }
@@ -78,7 +78,7 @@ class Vendors extends Controller
         }
 
         // Handle payments
-        $transactions = Transaction::where('contact_id', $vendor->id)->type('expense')->get();
+        $transactions = Transaction::where('contact_id', $vendor->id)->expense()->get();
 
         $counts['transactions'] = $transactions->count();
 

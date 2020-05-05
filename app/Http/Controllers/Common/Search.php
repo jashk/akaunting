@@ -9,12 +9,9 @@ use App\Models\Common\Contact;
 use App\Models\Purchase\Bill;
 use App\Models\Sale\Invoice;
 use App\Models\Common\Item;
-use App\Traits\Contacts;
 
 class Search extends Controller
 {
-    use Contacts;
-
     /**
      * Display a listing of the resource.
      *
@@ -68,7 +65,7 @@ class Search extends Controller
             }
         }/*
 
-        $income_transactions = Transaction::type('income')->usingSearchString($keyword)->get();
+        $income_transactions = Transaction::income()->usingSearchString($keyword)->get();
 
         if ($income_transactions->count()) {
             foreach ($income_transactions as $transaction) {
@@ -82,7 +79,7 @@ class Search extends Controller
             }
         }*/
 
-        $customers = Contact::type($this->getCustomerTypes())->enabled()->usingSearchString($keyword)->get();
+        $customers = Contact::customer()->enabled()->usingSearchString($keyword)->get();
 
         if ($customers->count()) {
             foreach ($customers as $customer) {
@@ -110,7 +107,7 @@ class Search extends Controller
             }
         }
 /*
-        $payments = Transaction::type('expense')->usingSearchString($keyword)->get();
+        $payments = Transaction::expense()->usingSearchString($keyword)->get();
 
         if ($revenues->count()) {
             foreach ($revenues as $revenue) {
@@ -124,7 +121,7 @@ class Search extends Controller
             }
         }*/
 
-        $vendors = Contact::type($this->getVendorTypes())->enabled()->usingSearchString($keyword)->get();
+        $vendors = Contact::vendor()->enabled()->usingSearchString($keyword)->get();
 
         if ($vendors->count()) {
             foreach ($vendors as $vendor) {

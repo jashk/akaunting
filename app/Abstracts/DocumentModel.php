@@ -15,6 +15,11 @@ abstract class DocumentModel extends Model
 {
     use Cloneable, Currencies, DateTime, Media, Recurring;
 
+    public function totals_sorted()
+    {
+        return $this->totals()->orderBy('sort_order');
+    }
+
     public function scopeDue($query, $date)
     {
         return $query->whereDate('due_at', '=', $date);
@@ -22,7 +27,7 @@ abstract class DocumentModel extends Model
 
     public function scopeAccrued($query)
     {
-        return $query->where('status', '<>', 'draft');
+        return $query->whereNotIn('status', ['draft', 'cancelled']);
     }
 
     public function scopePaid($query)
@@ -98,7 +103,7 @@ abstract class DocumentModel extends Model
                     $default_model->currency_code = $item->currency_code;
                     $default_model->currency_rate = $currencies[$item->currency_code];
 
-                    $default_amount = (double) $default_model->getDivideConvertedAmount();
+                    $default_amount = (double) $default_model->getAmountConvertedToDefault();
 
                     $convert_model = new Transaction();
                     $convert_model->default_currency_code = $item->currency_code;
@@ -106,7 +111,7 @@ abstract class DocumentModel extends Model
                     $convert_model->currency_code = $this->currency_code;
                     $convert_model->currency_rate = $currencies[$this->currency_code];
 
-                    $amount = (double) $convert_model->getAmountConvertedFromCustomDefault();
+                    $amount = (double) $convert_model->getAmountConvertedFromDefault();
                 }
 
                 $paid += $amount;
@@ -145,6 +150,9 @@ abstract class DocumentModel extends Model
                 break;
             case 'viewed':
                 $label = 'warning';
+                break;
+            case 'cancelled':
+                $label = 'dark';
                 break;
             default:
                 $label = 'primary';

@@ -23,14 +23,18 @@
         :model="{{ $attributes['model'] }}"
         @endif
 
-        multiple="true"
+        :multiple="true"
 
         :add-new="{{ json_encode([
             'status' => true,
             'text' => trans('general.add_new'),
             'path' => isset($attributes['path']) ? $attributes['path']: false,
             'type' => isset($attributes['type']) ? $attributes['type'] : 'modal',
-            'field' => isset($attributes['field']) ? $attributes['field'] : 'name',
+            'field' => [
+                'key' => isset($attributes['field']['key']) ? $attributes['field']['key'] : 'id',
+                'value' => isset($attributes['field']['value']) ? $attributes['field']['value'] : 'name'
+            ],
+            'new_text' => trans('modules.new'),
             'buttons' => [
                 'cancel' => [
                     'text' => trans('general.cancel'),
@@ -60,11 +64,15 @@
         @endif
 
         @if (isset($attributes['readonly']))
-        :readonly="'{{ $attributes['readonly'] }}'"
+        :readonly="{{ $attributes['readonly'] }}"
         @endif
 
         @if (isset($attributes['disabled']))
-        :disabled="'{{ $attributes['disabled'] }}'"
+        :disabled="{{ $attributes['disabled'] }}"
+        @endif
+
+        @if (isset($attributes['show']))
+        v-if="{{ $attributes['show'] }}"
         @endif
 
         @if (isset($attributes['v-error-message']))

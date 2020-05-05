@@ -29,6 +29,12 @@ return [
             'before'        => 'नंबर से पहले',
             'after'         => 'नंबर के बाद',
         ],
+        'discount_location' => [
+            'name'          => 'Discount Location',
+            'item'          => 'At line',
+            'total'         => 'At total',
+            'both'          => 'Both line and total',
+        ],
     ],
 
     'invoice' => [
@@ -52,6 +58,10 @@ return [
         'subheading'        => 'उपशीर्षक',
         'due_receipt'       => 'प्राप्ति पर देय',
         'due_days'          => ':days दिनों के भीतर देय',
+        'choose_template'   => 'चालान टेम्पलेट चुनें',
+        'default'           => 'पूर्व निर्धारित',
+        'classic'           => 'क्लासिक',
+        'modern'            => 'नवीन',
     ],
 
     'default' => [

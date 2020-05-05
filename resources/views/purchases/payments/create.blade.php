@@ -24,7 +24,7 @@
 
                     {{ Form::moneyGroup('amount', trans('general.amount'), 'money-bill-alt', ['required' => 'required', 'currency' => $currency], 0.00) }}
 
-                    {{ Form::selectGroup('account_id', trans_choice('general.accounts', 1), 'university', $accounts, setting('default.account'), ['required' => 'required', 'change' => 'onChangeAccount']) }}
+                    {{ Form::selectAddNewGroup('account_id', trans_choice('general.accounts', 1), 'university', $accounts, setting('default.account'), ['required' => 'required', 'path' => route('modals.accounts.create'), 'change' => 'onChangeAccount']) }}
 
                     {{ Form::selectAddNewGroup('contact_id', trans_choice('general.vendors', 1), 'user', $vendors, setting('default.vendor'), ['path' => route('modals.vendors.create')]) }}
 
@@ -40,7 +40,7 @@
 
                     {{ Form::fileGroup('attachment', trans('general.attachment')) }}
 
-                    {{ Form::selectGroup('document_id', trans_choice('general.bills', 1), 'file-invoice', [], null, ['disabled' => 'disabled']) }}
+                    {{ Form::selectGroup('document_id', trans_choice('general.bills', 1), 'file-invoice', [], null, ['disabled' => 'true']) }}
                 </div>
             </div>
 

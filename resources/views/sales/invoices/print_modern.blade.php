@@ -4,12 +4,11 @@
 
 @section('content')
     <div class="row" style="background-color:{{ setting('invoice.color') }} !important; -webkit-print-color-adjust: exact;">
-        <div class="col-58 m-first-column">
-            <div class="text company pl-2 m-fc-left">
+        <div class="col-58">
+            <div class="text company pl-2 mb-1 d-flex align-items-center">
                 <img src="{{ $logo }}" alt="{{ setting('company.name') }}"/>
-            </div>
-            <div class="text company m-fc-right">
-                <strong class="text-white">{{ setting('company.name') }}</strong>
+
+                <strong class="pl-2 text-white">{{ setting('company.name') }}</strong>
             </div>
         </div>
 
@@ -159,7 +158,7 @@
 
         <div class="col-42 float-right text-right">
             <div class="text company pr-2">
-                @foreach ($invoice->totals as $total)
+                @foreach ($invoice->totals_sorted as $total)
                     @if ($total->code != 'total')
                         @stack($total->code . '_td_start')
                             <strong class="float-left">{{ trans($total->title) }}:</strong>
